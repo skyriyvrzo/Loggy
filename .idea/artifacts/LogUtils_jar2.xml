@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="jar" name="LogUtils:jar2">
-    <output-path>$PROJECT_DIR$/out/artifacts/LogUtils_jar2</output-path>
-    <root id="archive" name="LogUtils.jar">
-      <element id="module-output" name="LogUtils" />
-    </root>
-  </artifact>
-</component>

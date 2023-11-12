@@ -11,8 +11,8 @@ public class LogUtils {
     public static String getInfo(String string){
         return "["+ Reference.timeFormat.format(Calendar.getInstance().getTime()) + " INFO]: " + string + "\n";
     }
-    public static String getError(String string){
-        return "["+ Reference.timeFormat.format(Calendar.getInstance().getTime()) + " ERROR]: " + string + "\n";
+    public static String getError(String classname, String string){
+        return "["+ Reference.timeFormat.format(Calendar.getInstance().getTime()) + " ERROR/" + classname + "]: " + string + "\n";
     }
     public static String getCommand(String string){
         return "["+ Reference.timeFormat.format(Calendar.getInstance().getTime()) + " COMMAND]: " + string + "\n";
