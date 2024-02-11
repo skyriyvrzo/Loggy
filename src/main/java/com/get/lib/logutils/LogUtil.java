@@ -14,12 +14,16 @@ public class LogUtil {
 	
 	static SimpleDateFormat date = new SimpleDateFormat("dd-MM-yyyy");
 	
+	public LogUtil() {
+		
+	}
+	
 	public LogUtil(String dirTargetPath) {
 		this.dirTarget = dirTargetPath + "\\logs";
 	}
 	
     public String getMain(String string){
-        return "["+ Reference.timeFormat.format(Calendar.getInstance().getTime()) + " Main]: " + string + "\n";
+        return "["+ Reference.timeFormat.format(Calendar.getInstance().getTime()) + " MAIN]: " + string + "\n";
     }
     
     public String getInfo(String string){
