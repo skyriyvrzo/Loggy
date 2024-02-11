@@ -30,6 +30,10 @@ public class LogUtil {
         return "["+ Reference.timeFormat.format(Calendar.getInstance().getTime()) + " INFO]: " + string + "\n";
     }
     
+    public String getWarning(String string){
+        return "["+ Reference.timeFormat.format(Calendar.getInstance().getTime()) + " WARNING]: " + string + "\n";
+    }
+    
     public <T> String getError(Class<T> classname, String string){
         return "["+ Reference.timeFormat.format(Calendar.getInstance().getTime()) + " ERROR/" + classname.getSimpleName() + "]: " + string + "\n";
     }
