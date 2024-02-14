@@ -46,6 +46,10 @@ public class LogUtil {
         return "["+ Reference.timeFormat.format(Calendar.getInstance().getTime()) + " DISCORD]: " + string + "\n";
     }
     
+    public String getEvent(String event, String string) {
+    	return "["+ Reference.timeFormat.format(Calendar.getInstance().getTime()) + " " + event + "]: " + string + "\n";
+    }
+    
     public <T> String getClassName(Class<T> c){
         return c.getSimpleName();
     }
