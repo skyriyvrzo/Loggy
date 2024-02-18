@@ -4,7 +4,7 @@ import java.text.SimpleDateFormat;
 
 public class Reference {
 	
-    public static final String Version = "1.5.3";
+    public static final String Version = "1.5.4";
     public static SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
     
 }

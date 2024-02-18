@@ -11,6 +11,7 @@ import com.get.logutils.util.Reference;
 public class LogUtil {
 	
 	private String dirTarget;
+	private String os;
 	
 	static SimpleDateFormat date = new SimpleDateFormat("dd-MM-yyyy");
 	
@@ -19,7 +20,12 @@ public class LogUtil {
 	}
 	
 	public LogUtil(String dirTargetPath) {
-		this.dirTarget = dirTargetPath + "\\logs";
+		this.dirTarget = dirTargetPath;
+	}
+	
+	public LogUtil(String dirTargetPath, String os) {
+		this.dirTarget = dirTargetPath;
+		this.os = os;
 	}
 	
     public String getMain(String string){
@@ -61,9 +67,21 @@ public class LogUtil {
     	if(!file.mkdir()) {}
     }
     
-    public void writeLog(String s) throws IOException {
-    	FileWriter writer = new FileWriter(dirTarget + "\\" + date.format(Calendar.getInstance().getTime()) + ".log", true);
-		writer.append(s);
-		writer.close();
+    public void writeLog(String s) {
+    	
+    	String dir = null;
+    	
+    	if(os.equalsIgnoreCase("windows")) dir = dirTarget + "\\";
+    	else if(os.equalsIgnoreCase("linux")) dir = dirTarget + "/";
+    	else if(os.equalsIgnoreCase("mac")) dir = dirTarget + "/";
+    	
+    	FileWriter writer;
+		try {
+			writer = new FileWriter(dir + date.format(Calendar.getInstance().getTime()) + ".log", true);
+			writer.append(s);
+			writer.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
     }
 }
