@@ -44,6 +44,11 @@ public class LogUtil {
         return "["+ Reference.timeFormat.format(Calendar.getInstance().getTime()) + " ERROR/" + classname.getSimpleName() + "]: " + string + "\n";
     }
     
+    public <T> String getError(Class<T> classname, Object x){
+    	String s = String.valueOf(x);
+        return "["+ Reference.timeFormat.format(Calendar.getInstance().getTime()) + " ERROR/" + classname.getSimpleName() + "]: " + s + "\n";
+    }
+    
     public String getCommand(String string){
         return "["+ Reference.timeFormat.format(Calendar.getInstance().getTime()) + " COMMAND]: " + string + "\n";
     }
