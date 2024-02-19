@@ -21,6 +21,7 @@ public class LogUtil {
 	
 	public LogUtil(String dirTargetPath) {
 		this.dirTarget = dirTargetPath;
+		os = "windows";
 	}
 	
 	public LogUtil(String dirTargetPath, String os) {
