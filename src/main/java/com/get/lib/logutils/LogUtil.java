@@ -20,13 +20,22 @@ public class LogUtil {
 	}
 	
 	public LogUtil(String dirTargetPath) {
-		this.dirTarget = dirTargetPath;
-		os = "windows";
-	}
-	
-	public LogUtil(String dirTargetPath, String os) {
-		this.dirTarget = dirTargetPath;
-		this.os = os;
+		
+		if(System.getProperty("os.name").contains("Windows")) {
+			os = "windows";
+			this.dirTarget = dirTargetPath + "\\logs";
+		}
+		else if(System.getProperty("os.name").equalsIgnoreCase("Linux")) {
+			os = "linux";
+			this.dirTarget = dirTargetPath + "/logs";
+		}
+		else if(System.getProperty("os.name").contains("mac")) {
+			os = "mac";
+			this.dirTarget = dirTargetPath + "/logs";
+		}
+		else {
+			System.err.println(System.getProperty("os.name"));
+		}
 	}
 	
     public String getMain(String string){
