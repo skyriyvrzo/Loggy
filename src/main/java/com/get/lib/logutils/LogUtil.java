@@ -16,7 +16,7 @@ public class LogUtil {
 	static SimpleDateFormat date = new SimpleDateFormat("dd-MM-yyyy");
 	
 	public LogUtil() {
-		
+			
 	}
 	
 	public LogUtil(String dirTargetPath) {
@@ -38,40 +38,40 @@ public class LogUtil {
 		}
 	}
 	
-    public String getMain(String string){
+    public static String main(String string){
         return "["+ Reference.timeFormat.format(Calendar.getInstance().getTime()) + " MAIN]: " + string + "\n";
     }
     
-    public String getInfo(String string){
+    public static String info(String string){
         return "["+ Reference.timeFormat.format(Calendar.getInstance().getTime()) + " INFO]: " + string + "\n";
     }
     
-    public String getWarning(String string){
+    public static String warning(String string){
         return "["+ Reference.timeFormat.format(Calendar.getInstance().getTime()) + " WARNING]: " + string + "\n";
     }
     
-    public <T> String getError(Class<T> classname, String string){
+    public static <T> String error(Class<T> classname, String string){
         return "["+ Reference.timeFormat.format(Calendar.getInstance().getTime()) + " ERROR/" + classname.getSimpleName() + "]: " + string + "\n";
     }
     
-    public <T> String getError(Class<T> classname, Object x){
+    public static <T> String error(Class<T> classname, Object x){
     	String s = String.valueOf(x);
         return "["+ Reference.timeFormat.format(Calendar.getInstance().getTime()) + " ERROR/" + classname.getSimpleName() + "]: " + s + "\n";
     }
     
-    public String getCommand(String string){
+    public static String command(String string){
         return "["+ Reference.timeFormat.format(Calendar.getInstance().getTime()) + " COMMAND]: " + string + "\n";
     }
     
-    public String getDiscord(String string){
+    public static String discord(String string){
         return "["+ Reference.timeFormat.format(Calendar.getInstance().getTime()) + " DISCORD]: " + string + "\n";
     }
     
-    public String getEvent(String event, String string) {
+    public static String event(String event, String string) {
     	return "["+ Reference.timeFormat.format(Calendar.getInstance().getTime()) + " " + event + "]: " + string + "\n";
     }
     
-    public <T> String getClassName(Class<T> c){
+    public static <T> String getClassName(Class<T> c){
         return c.getSimpleName();
     }
     
