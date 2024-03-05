@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
+import com.get.lib.colorlib.ANSIEscapeColorCode;
 import com.get.logutils.util.Reference;
 
 public class LogUtil {
@@ -38,41 +39,73 @@ public class LogUtil {
 		}
 	}
 	
-    public static String main(String string){
-        return "["+ Reference.timeFormat.format(Calendar.getInstance().getTime()) + " MAIN]: " + string + "\n";
+    public static String main(Object method, Object o, String message, boolean reqcolor){
+        String s = reqcolor ? String.format("%s[%s] %s[%s/MAIN] %s(%s) %s: %s%s", ANSIEscapeColorCode.blue, Reference.time.get(), ANSIEscapeColorCode.green, method, ANSIEscapeColorCode.cyan, o.toString(), ANSIEscapeColorCode.white, message, "\n") : 
+        	String.format("[%s] [%s/MAIN] (%s) : %s%s", Reference.time.get(), method, o.toString(), message, "\n");
+        System.out.print(String.format("%s[%s] %s[%s/MAIN] %s(%s) %s: %s%s", ANSIEscapeColorCode.blue, Reference.time.get(), ANSIEscapeColorCode.green, method, ANSIEscapeColorCode.cyan, o.toString(), ANSIEscapeColorCode.white, message, "\n"));
+        
+        return s;
     }
     
-    public static String info(String string){
-        return "["+ Reference.timeFormat.format(Calendar.getInstance().getTime()) + " INFO]: " + string + "\n";
+    public static String info(Object method, Object o, String message, boolean reqcolor){
+    	String s = reqcolor ? String.format("%s[%s] %s[%s/INFO] %s(%s) %s: %s%s", ANSIEscapeColorCode.blue, Reference.time.get(), ANSIEscapeColorCode.green, method, ANSIEscapeColorCode.cyan, o.toString(), ANSIEscapeColorCode.white, message, "\n") :
+    		String.format("[%s] [%s/INFO] (%s) : %s%s", Reference.time.get(), method, o.toString(), message, "\n");
+    	System.out.print(String.format("%s[%s] %s[%s/INFO] %s(%s) %s: %s%s", ANSIEscapeColorCode.blue, Reference.time.get(), ANSIEscapeColorCode.green, method, ANSIEscapeColorCode.cyan, o.toString(), ANSIEscapeColorCode.white, message, "\n"));
+    	
+    	return s;
     }
     
-    public static String warning(String string){
-        return "["+ Reference.timeFormat.format(Calendar.getInstance().getTime()) + " WARNING]: " + string + "\n";
+    public static String warn(Object method, Object o, String message, boolean reqcolor){
+    	String s = reqcolor ? String.format("%s[%s] %s[%s/WARN] %s(%s) %s: %s%s", ANSIEscapeColorCode.blue, Reference.time.get(), ANSIEscapeColorCode.yellow, method, ANSIEscapeColorCode.cyan, o.toString(), ANSIEscapeColorCode.white, message, "\n") :
+    		String.format("[%s] [%s/WARN] (%s) : %s%s", Reference.time.get(), method, o.toString(), message, "\n");
+    	System.out.print(String.format("%s[%s] %s[%s/WARN] %s(%s) %s: %s%s", ANSIEscapeColorCode.blue, Reference.time.get(), ANSIEscapeColorCode.yellow, method, ANSIEscapeColorCode.cyan, o.toString(), ANSIEscapeColorCode.white, message, "\n"));
+    	
+    	return s;
     }
     
-    public static <T> String error(Class<T> classname, String string){
-        return "["+ Reference.timeFormat.format(Calendar.getInstance().getTime()) + " ERROR/" + classname.getSimpleName() + "]: " + string + "\n";
+    public static String error(Object method, Object o, Object message, boolean reqcolor){
+    	String s = String.valueOf(message);
+    	String s2 = reqcolor ? String.format("%s[%s] %s[%s/ERROR] %s(%s) %s: %s%s", ANSIEscapeColorCode.blue, Reference.time.get(), ANSIEscapeColorCode.red, method, ANSIEscapeColorCode.cyan, o.toString(), ANSIEscapeColorCode.white, s, "\n") :
+    		String.format("[%s] [%s/ERROR] (%s) : %s%s", Reference.time.get(), method, o.toString(), s, "\n");
+    	System.out.print(String.format("%s[%s] %s[%s/ERROR] %s(%s) %s: %s%s", ANSIEscapeColorCode.blue, Reference.time.get(), ANSIEscapeColorCode.red, method, ANSIEscapeColorCode.cyan, o.toString(), ANSIEscapeColorCode.white, s, "\n"));
+    	
+    	return s2;
     }
     
-    public static <T> String error(Class<T> classname, Object x){
-    	String s = String.valueOf(x);
-        return "["+ Reference.timeFormat.format(Calendar.getInstance().getTime()) + " ERROR/" + classname.getSimpleName() + "]: " + s + "\n";
+    public static String command(Object method, Object o, String message, boolean reqcolor){
+    	String s = reqcolor ? String.format("%s[%s] %s[%s/Command] %s(%s) %s: %s%s", ANSIEscapeColorCode.blue, Reference.time.get(), ANSIEscapeColorCode.green, method, ANSIEscapeColorCode.cyan, o.toString(), ANSIEscapeColorCode.white, message, "\n") : 
+    		String.format("[%s] [%s/Command] (%s) : %s%s", Reference.time.get(), method, o.toString(), message, "\n");
+    	System.out.print(String.format("%s[%s] %s[%s/Command] %s(%s) %s: %s%s", ANSIEscapeColorCode.blue, Reference.time.get(), ANSIEscapeColorCode.green, method, ANSIEscapeColorCode.cyan, o.toString(), ANSIEscapeColorCode.white, message, "\n"));
+    	
+    	return s;
     }
     
-    public static String command(String string){
-        return "["+ Reference.timeFormat.format(Calendar.getInstance().getTime()) + " COMMAND]: " + string + "\n";
+    public static String discord(Object method, Object o, String message, boolean reqcolor){
+    	String s = reqcolor ? String.format("%s[%s] %s[%s/Discord] %s(%s) %s: %s%s", ANSIEscapeColorCode.blue, Reference.time.get(), ANSIEscapeColorCode.green, method, ANSIEscapeColorCode.cyan, o.toString(), ANSIEscapeColorCode.white, message, "\n") :
+    		String.format("[%s] [%s/Discord] (%s) : %s%s", Reference.time.get(), method, o.toString(), message, "\n");
+    	System.out.print(String.format("%s[%s] %s[%s/Discord] %s(%s) %s: %s%s", ANSIEscapeColorCode.blue, Reference.time.get(), ANSIEscapeColorCode.green, method, ANSIEscapeColorCode.cyan, o.toString(), ANSIEscapeColorCode.white, message, "\n"));
+    	
+    	return s;
     }
     
-    public static String discord(String string){
-        return "["+ Reference.timeFormat.format(Calendar.getInstance().getTime()) + " DISCORD]: " + string + "\n";
-    }
-    
-    public static String event(String event, String string) {
-    	return "["+ Reference.timeFormat.format(Calendar.getInstance().getTime()) + " " + event + "]: " + string + "\n";
+    public static String event(Object method, Object o, String event, String message, boolean reqcolor) {
+    	String s = reqcolor ? String.format("%s[%s] %s[%s/EVENT] %s(%s) %s: %s%s", ANSIEscapeColorCode.blue, Reference.time.get(), ANSIEscapeColorCode.green, method, ANSIEscapeColorCode.cyan, o.toString(), ANSIEscapeColorCode.white, message, "\n") :
+    		String.format("[%s] [%s/EVENT] (%s) : %s%s", Reference.time.get(), method, o.toString(), message, "\n");
+    	System.out.print(String.format("%s[%s] %s[%s/EVENT] %s(%s) %s: %s%s", ANSIEscapeColorCode.blue, Reference.time.get(), ANSIEscapeColorCode.green, method, ANSIEscapeColorCode.cyan, o.toString(), ANSIEscapeColorCode.white, message, "\n"));
+    	
+    	return s;
     }
     
     public static <T> String getClassName(Class<T> c){
         return c.getSimpleName();
+    }
+    
+    public static String getEnclosingMethod(Object o) {
+    	try {
+    		return o.getClass().getEnclosingMethod().getName();
+    	}catch(NullPointerException e) {
+    		return null;
+    	}
     }
     
     public void mkdir() {
