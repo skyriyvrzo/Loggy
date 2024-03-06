@@ -7,7 +7,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 import com.get.lib.colorlib.ANSIEscapeColorCode;
-import com.get.logutils.util.Reference;
+import com.get.lib.logutils.util.Reference;
 
 public class LogUtil {
 	
@@ -82,10 +82,10 @@ public class LogUtil {
     }
     
     public static String event(Object method, Object o, String message, boolean reqcolor) {
-    	System.out.print(String.format("%s[%s] %s[%s/EVENT] %s(%s) %s: %s%s", ANSIEscapeColorCode.blue, Reference.time.get(), ANSIEscapeColorCode.green, method, ANSIEscapeColorCode.cyan, o.toString(), ANSIEscapeColorCode.white, message, "\n"));
+    	System.out.print(String.format("%s[%s] %s[%s/Event] %s(%s) %s: %s%s", ANSIEscapeColorCode.blue, Reference.time.get(), ANSIEscapeColorCode.green, method, ANSIEscapeColorCode.cyan, o.toString(), ANSIEscapeColorCode.white, message, "\n"));
 
-    	return reqcolor ? String.format("%s[%s] %s[%s/EVENT] %s(%s) %s: %s%s", ANSIEscapeColorCode.blue, Reference.time.get(), ANSIEscapeColorCode.green, method, ANSIEscapeColorCode.cyan, o.toString(), ANSIEscapeColorCode.white, message, "\n") :
-    		String.format("[%s] [%s/EVENT] (%s) : %s%s", Reference.time.get(), method, o.toString(), message, "\n");
+    	return reqcolor ? String.format("%s[%s] %s[%s/Event] %s(%s) %s: %s%s", ANSIEscapeColorCode.blue, Reference.time.get(), ANSIEscapeColorCode.green, method, ANSIEscapeColorCode.cyan, o.toString(), ANSIEscapeColorCode.white, message, "\n") :
+    		String.format("[%s] [%s/Event] (%s) : %s%s", Reference.time.get(), method, o.toString(), message, "\n");
     }
     
     public static <T> String getClassName(Class<T> c){
