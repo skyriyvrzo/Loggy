@@ -81,7 +81,7 @@ public class LogUtil {
     		String.format("[%s] [%s/Discord] (%s) : %s%s", Reference.time.get(), method, o.toString(), message, "\n");
     }
     
-    public static String event(Object method, Object o, String event, String message, boolean reqcolor) {
+    public static String event(Object method, Object o, String message, boolean reqcolor) {
     	System.out.print(String.format("%s[%s] %s[%s/EVENT] %s(%s) %s: %s%s", ANSIEscapeColorCode.blue, Reference.time.get(), ANSIEscapeColorCode.green, method, ANSIEscapeColorCode.cyan, o.toString(), ANSIEscapeColorCode.white, message, "\n"));
 
     	return reqcolor ? String.format("%s[%s] %s[%s/EVENT] %s(%s) %s: %s%s", ANSIEscapeColorCode.blue, Reference.time.get(), ANSIEscapeColorCode.green, method, ANSIEscapeColorCode.cyan, o.toString(), ANSIEscapeColorCode.white, message, "\n") :
