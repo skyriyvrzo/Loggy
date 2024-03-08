@@ -39,104 +39,108 @@ public class LogUtil {
 		}
 	}
 	
-    public static String main(Object method, Object o, String message, boolean reqcolor){
-    	System.out.print(String.format("%s[%s] %s[%s/MAIN] %s(%s) %s: %s%s", ANSIEscapeColorCode.blue, Reference.time.get(), ANSIEscapeColorCode.green, method, ANSIEscapeColorCode.cyan, o.toString(), ANSIEscapeColorCode.white, message, "\n"));
+    public static String main(Object method, Object o, String message, boolean println, boolean reqcolor){
+    	if(println) System.out.print(reqcolor ? String.format("%s[%s] %s[%s/MAIN] %s(%s) %s: %s%s", ANSIEscapeColorCode.blue, Reference.time.get(), ANSIEscapeColorCode.green, method, ANSIEscapeColorCode.cyan, o.toString(), ANSIEscapeColorCode.white, message, "\n") : 
+    		String.format("[%s] [%s/MAIN] (%s) : %s%s", Reference.time.get(), method, o.toString(), message, "\n"));
         
-    	return reqcolor ? String.format("%s[%s] %s[%s/MAIN] %s(%s) %s: %s%s", ANSIEscapeColorCode.blue, Reference.time.get(), ANSIEscapeColorCode.green, method, ANSIEscapeColorCode.cyan, o.toString(), ANSIEscapeColorCode.white, message, "\n") : 
-        	String.format("[%s] [%s/MAIN] (%s) : %s%s", Reference.time.get(), method, o.toString(), message, "\n");
+    	return String.format("[%s] [%s/MAIN] (%s) : %s%s", Reference.time.get(), method, o.toString(), message, "\n");
     }
     
-    public static String main(String message, boolean reqcolor){
-    	System.out.print(String.format("%s[%s] %s[MAIN] %s: %s%s", ANSIEscapeColorCode.blue, Reference.time.get(), ANSIEscapeColorCode.green, ANSIEscapeColorCode.white, message, "\n"));
-        
-    	return reqcolor ? String.format("%s[%s] %s[MAIN] %s: %s%s", ANSIEscapeColorCode.blue, Reference.time.get(), ANSIEscapeColorCode.green, ANSIEscapeColorCode.white, message, "\n") : 
-        	String.format("[%s] [MAIN] : %s%s", Reference.time.get(), message, "\n");
+    public static String main(String message, boolean println, boolean reqcolor){        
+    	if(println) System.out.print(reqcolor ? String.format("%s[%s] %s[MAIN] %s: %s%s", ANSIEscapeColorCode.blue, Reference.time.get(), ANSIEscapeColorCode.green, ANSIEscapeColorCode.white, message, "\n") : 
+        	String.format("[%s] [MAIN] : %s%s", Reference.time.get(), message, "\n"));
+    	
+    	return String.format("[%s] [MAIN] : %s%s", Reference.time.get(), message, "\n");
     }
     
-    public static String info(Object method, Object o, String message, boolean reqcolor){
-    	System.out.print(String.format("%s[%s] %s[%s/INFO] %s(%s) %s: %s%s", ANSIEscapeColorCode.blue, Reference.time.get(), ANSIEscapeColorCode.green, method, ANSIEscapeColorCode.cyan, o.toString(), ANSIEscapeColorCode.white, message, "\n"));
-
-    	return reqcolor ? String.format("%s[%s] %s[%s/INFO] %s(%s) %s: %s%s", ANSIEscapeColorCode.blue, Reference.time.get(), ANSIEscapeColorCode.green, method, ANSIEscapeColorCode.cyan, o.toString(), ANSIEscapeColorCode.white, message, "\n") :
-    		String.format("[%s] [%s/INFO] (%s) : %s%s", Reference.time.get(), method, o.toString(), message, "\n");
+    public static String info(Object method, Object o, String message, boolean println, boolean reqcolor){
+    	if(println) System.out.print(reqcolor ? String.format("%s[%s] %s[%s/INFO] %s(%s) %s: %s%s", ANSIEscapeColorCode.blue, Reference.time.get(), ANSIEscapeColorCode.green, method, ANSIEscapeColorCode.cyan, o.toString(), ANSIEscapeColorCode.white, message, "\n") :
+    		String.format("[%s] [%s/INFO] (%s) : %s%s", Reference.time.get(), method, o.toString(), message, "\n"));
+    	
+    	return String.format("[%s] [%s/INFO] (%s) : %s%s", Reference.time.get(), method, o.toString(), message, "\n");
     }
     
-    public static String info(String message, boolean reqcolor){
-    	System.out.print(String.format("%s[%s] %s[INFO] %s: %s%s", ANSIEscapeColorCode.blue, Reference.time.get(), ANSIEscapeColorCode.green, ANSIEscapeColorCode.white, message, "\n"));
-        
-    	return reqcolor ? String.format("%s[%s] %s[INFO] %s: %s%s", ANSIEscapeColorCode.blue, Reference.time.get(), ANSIEscapeColorCode.green, ANSIEscapeColorCode.white, message, "\n") : 
-        	String.format("[%s] [INFO] : %s%s", Reference.time.get(), message, "\n");
+    public static String info(String message, boolean println, boolean reqcolor){        
+    	 if(println) System.out.print(reqcolor ? String.format("%s[%s] %s[INFO] %s: %s%s", ANSIEscapeColorCode.blue, Reference.time.get(), ANSIEscapeColorCode.green, ANSIEscapeColorCode.white, message, "\n") : 
+        	String.format("[%s] [INFO] : %s%s", Reference.time.get(), message, "\n"));
+    	 
+    	 return String.format("[%s] [INFO] : %s%s", Reference.time.get(), message, "\n");
     }
     
-    public static String warn(Object method, Object o, String message, boolean reqcolor){
-    	System.out.print(String.format("%s[%s] %s[%s/WARN] %s(%s) %s: %s%s", ANSIEscapeColorCode.blue, Reference.time.get(), ANSIEscapeColorCode.yellow, method, ANSIEscapeColorCode.cyan, o.toString(), ANSIEscapeColorCode.white, message, "\n"));
-
-    	return reqcolor ? String.format("%s[%s] %s[%s/WARN] %s(%s) %s: %s%s", ANSIEscapeColorCode.blue, Reference.time.get(), ANSIEscapeColorCode.yellow, method, ANSIEscapeColorCode.cyan, o.toString(), ANSIEscapeColorCode.white, message, "\n") :
-    		String.format("[%s] [%s/WARN] (%s) : %s%s", Reference.time.get(), method, o.toString(), message, "\n");
+    public static String warn(Object method, Object o, String message, boolean println, boolean reqcolor){
+    	if(println) System.out.print(reqcolor ? String.format("%s[%s] %s[%s/WARN] %s(%s) %s: %s%s", ANSIEscapeColorCode.blue, Reference.time.get(), ANSIEscapeColorCode.yellow, method, ANSIEscapeColorCode.cyan, o.toString(), ANSIEscapeColorCode.white, message, "\n") :
+    		String.format("[%s] [%s/WARN] (%s) : %s%s", Reference.time.get(), method, o.toString(), message, "\n"));
+    	
+    	return String.format("[%s] [%s/WARN] (%s) : %s%s", Reference.time.get(), method, o.toString(), message, "\n");
     }
     
-    public static String warn(String message, boolean reqcolor){
-    	System.out.print(String.format("%s[%s] %s[WARN] %s: %s%s", ANSIEscapeColorCode.blue, Reference.time.get(), ANSIEscapeColorCode.green, ANSIEscapeColorCode.white, message, "\n"));
+    public static String warn(String message, boolean println, boolean reqcolor){
+    	if(println) System.out.print(String.format("%s[%s] %s[WARN] %s: %s%s", ANSIEscapeColorCode.blue, Reference.time.get(), ANSIEscapeColorCode.green, ANSIEscapeColorCode.white, message, "\n"));
         
     	return reqcolor ? String.format("%s[%s] %s[WARN] %s: %s%s", ANSIEscapeColorCode.blue, Reference.time.get(), ANSIEscapeColorCode.green, ANSIEscapeColorCode.white, message, "\n") : 
         	String.format("[%s] [WARN] : %s%s", Reference.time.get(), message, "\n");
     }
     
-    public static String error(Object method, Object o, Object message, boolean reqcolor){
+    public static String error(Object method, Object o, Object message, boolean println, boolean reqcolor){
     	String s = String.valueOf(message);
-    	System.out.print(String.format("%s[%s] %s[%s/ERROR] %s(%s) %s: %s%s", ANSIEscapeColorCode.blue, Reference.time.get(), ANSIEscapeColorCode.red, method, ANSIEscapeColorCode.cyan, o.toString(), ANSIEscapeColorCode.white, s, "\n"));
-    	return reqcolor ? String.format("%s[%s] %s[%s/ERROR] %s(%s) %s: %s%s", ANSIEscapeColorCode.blue, Reference.time.get(), ANSIEscapeColorCode.red, method, ANSIEscapeColorCode.cyan, o.toString(), ANSIEscapeColorCode.white, s, "\n") :
-    		String.format("[%s] [%s/ERROR] (%s) : %s%s", Reference.time.get(), method, o.toString(), s, "\n");
+    	
+    	if(println) System.out.print(reqcolor ? String.format("%s[%s] %s[%s/ERROR] %s(%s) %s: %s%s", ANSIEscapeColorCode.blue, Reference.time.get(), ANSIEscapeColorCode.red, method, ANSIEscapeColorCode.cyan, o.toString(), ANSIEscapeColorCode.white, s, "\n") :
+    		String.format("[%s] [%s/ERROR] (%s) : %s%s", Reference.time.get(), method, o.toString(), s, "\n"));
+    	
+    	return String.format("[%s] [%s/ERROR] (%s) : %s%s", Reference.time.get(), method, o.toString(), s, "\n");
     }
     
-    public static String error(String message, boolean reqcolor){
-    	String s = String.valueOf(message);
-    	System.out.print(String.format("%s[%s] %s[ERROR] %s: %s%s", ANSIEscapeColorCode.blue, Reference.time.get(), ANSIEscapeColorCode.green, ANSIEscapeColorCode.white, s, "\n"));
-        
-    	return reqcolor ? String.format("%s[%s] %s[ERROR] %s: %s%s", ANSIEscapeColorCode.blue, Reference.time.get(), ANSIEscapeColorCode.green, ANSIEscapeColorCode.white, s, "\n") : 
-        	String.format("[%s] [ERROR] : %s%s", Reference.time.get(), s, "\n");
+    public static String error(Object o, boolean println, boolean reqcolor){
+    	String s = String.valueOf(o);
+    	        
+    	if(println) System.out.print(reqcolor ? String.format("%s[%s] %s[ERROR] %s: %s%s", ANSIEscapeColorCode.blue, Reference.time.get(), ANSIEscapeColorCode.green, ANSIEscapeColorCode.white, s, "\n") : 
+        	String.format("[%s] [ERROR] : %s%s", Reference.time.get(), s, "\n"));
+    	
+    	return String.format("[%s] [ERROR] : %s%s", Reference.time.get(), s, "\n");
     }
     
-    public static String command(Object method, Object o, String message, boolean reqcolor){
-    	System.out.print(String.format("%s[%s] %s[%s/Command] %s(%s) %s: %s%s", ANSIEscapeColorCode.blue, Reference.time.get(), ANSIEscapeColorCode.green, method, ANSIEscapeColorCode.cyan, o.toString(), ANSIEscapeColorCode.white, message, "\n"));
-
-    	return reqcolor ? String.format("%s[%s] %s[%s/Command] %s(%s) %s: %s%s", ANSIEscapeColorCode.blue, Reference.time.get(), ANSIEscapeColorCode.green, method, ANSIEscapeColorCode.cyan, o.toString(), ANSIEscapeColorCode.white, message, "\n") : 
-    		String.format("[%s] [%s/Command] (%s) : %s%s", Reference.time.get(), method, o.toString(), message, "\n");
+    public static String command(Object method, Object o, String message, boolean println, boolean reqcolor){
+    	if(println) System.out.print(reqcolor ? String.format("%s[%s] %s[%s/Command] %s(%s) %s: %s%s", ANSIEscapeColorCode.blue, Reference.time.get(), ANSIEscapeColorCode.green, method, ANSIEscapeColorCode.cyan, o.toString(), ANSIEscapeColorCode.white, message, "\n") : 
+    		String.format("[%s] [%s/Command] (%s) : %s%s", Reference.time.get(), method, o.toString(), message, "\n"));
+    	
+    	return String.format("[%s] [%s/Command] (%s) : %s%s", Reference.time.get(), method, o.toString(), message, "\n");
     }
     
-    public static String command(String message, boolean reqcolor){
-    	System.out.print(String.format("%s[%s] %s[Command] %s: %s%s", ANSIEscapeColorCode.blue, Reference.time.get(), ANSIEscapeColorCode.green, ANSIEscapeColorCode.white, message, "\n"));
+    /*
+    public static String command(String message, boolean println, boolean reqcolor){
+    	if (println) System.out.print(String.format("%s[%s] %s[Command] %s: %s%s", ANSIEscapeColorCode.blue, Reference.time.get(), ANSIEscapeColorCode.green, ANSIEscapeColorCode.white, message, "\n"));
         
     	return reqcolor ? String.format("%s[%s] %s[Command] %s: %s%s", ANSIEscapeColorCode.blue, Reference.time.get(), ANSIEscapeColorCode.green, ANSIEscapeColorCode.white, message, "\n") : 
         	String.format("[%s] [Command] : %s%s", Reference.time.get(), message, "\n");
     }
     
-    public static String discord(Object method, Object o, String message, boolean reqcolor){
-    	System.out.print(String.format("%s[%s] %s[%s/Discord] %s(%s) %s: %s%s", ANSIEscapeColorCode.blue, Reference.time.get(), ANSIEscapeColorCode.green, method, ANSIEscapeColorCode.cyan, o.toString(), ANSIEscapeColorCode.white, message, "\n"));
+    public static String discord(Object method, Object o, String message, boolean println, boolean reqcolor){
+    	if (println) System.out.print(String.format("%s[%s] %s[%s/Discord] %s(%s) %s: %s%s", ANSIEscapeColorCode.blue, Reference.time.get(), ANSIEscapeColorCode.green, method, ANSIEscapeColorCode.cyan, o.toString(), ANSIEscapeColorCode.white, message, "\n"));
     	
     	return reqcolor ? String.format("%s[%s] %s[%s/Discord] %s(%s) %s: %s%s", ANSIEscapeColorCode.blue, Reference.time.get(), ANSIEscapeColorCode.green, method, ANSIEscapeColorCode.cyan, o.toString(), ANSIEscapeColorCode.white, message, "\n") :
     		String.format("[%s] [%s/Discord] (%s) : %s%s", Reference.time.get(), method, o.toString(), message, "\n");
     }
     
-    public static String discord(String message, boolean reqcolor){
-    	System.out.print(String.format("%s[%s] %s[Discord] %s: %s%s", ANSIEscapeColorCode.blue, Reference.time.get(), ANSIEscapeColorCode.green, ANSIEscapeColorCode.white, message, "\n"));
+    public static String discord(String message, boolean println, boolean reqcolor){
+    	if (println) System.out.print(String.format("%s[%s] %s[Discord] %s: %s%s", ANSIEscapeColorCode.blue, Reference.time.get(), ANSIEscapeColorCode.green, ANSIEscapeColorCode.white, message, "\n"));
         
     	return reqcolor ? String.format("%s[%s] %s[Discord] %s: %s%s", ANSIEscapeColorCode.blue, Reference.time.get(), ANSIEscapeColorCode.green, ANSIEscapeColorCode.white, message, "\n") : 
         	String.format("[%s] [Discord] : %s%s", Reference.time.get(), message, "\n");
     }
     
-    public static String event(Object method, Object o, String message, boolean reqcolor) {
-    	System.out.print(String.format("%s[%s] %s[%s/Event] %s(%s) %s: %s%s", ANSIEscapeColorCode.blue, Reference.time.get(), ANSIEscapeColorCode.green, method, ANSIEscapeColorCode.cyan, o.toString(), ANSIEscapeColorCode.white, message, "\n"));
+    public static String event(Object method, Object o, String message, boolean println, boolean reqcolor) {
+    	if (println) System.out.print(String.format("%s[%s] %s[%s/Event] %s(%s) %s: %s%s", ANSIEscapeColorCode.blue, Reference.time.get(), ANSIEscapeColorCode.green, method, ANSIEscapeColorCode.cyan, o.toString(), ANSIEscapeColorCode.white, message, "\n"));
 
     	return reqcolor ? String.format("%s[%s] %s[%s/Event] %s(%s) %s: %s%s", ANSIEscapeColorCode.blue, Reference.time.get(), ANSIEscapeColorCode.green, method, ANSIEscapeColorCode.cyan, o.toString(), ANSIEscapeColorCode.white, message, "\n") :
     		String.format("[%s] [%s/Event] (%s) : %s%s", Reference.time.get(), method, o.toString(), message, "\n");
     }
     
-    public static String event(String message, boolean reqcolor){
-    	System.out.print(String.format("%s[%s] %s[Event] %s: %s%s", ANSIEscapeColorCode.blue, Reference.time.get(), ANSIEscapeColorCode.green, ANSIEscapeColorCode.white, message, "\n"));
+    public static String event(String message, boolean println, boolean reqcolor){
+    	if (println) System.out.print(String.format("%s[%s] %s[Event] %s: %s%s", ANSIEscapeColorCode.blue, Reference.time.get(), ANSIEscapeColorCode.green, ANSIEscapeColorCode.white, message, "\n"));
         
     	return reqcolor ? String.format("%s[%s] %s[Event] %s: %s%s", ANSIEscapeColorCode.blue, Reference.time.get(), ANSIEscapeColorCode.green, ANSIEscapeColorCode.white, message, "\n") : 
         	String.format("[%s] [Event] : %s%s", Reference.time.get(), message, "\n");
-    }
+    }*/
     
     public static <T> String getClassName(Class<T> c){
         return c.getSimpleName();
