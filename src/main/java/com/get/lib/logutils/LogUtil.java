@@ -75,10 +75,9 @@ public class LogUtil {
     }
     
     public static String warn(String message, boolean println, boolean reqcolor){
-    	if(println) System.out.print(String.format("%s[%s] %s[WARN] %s: %s%s", ANSIEscapeColorCode.blue, Reference.time.get(), ANSIEscapeColorCode.green, ANSIEscapeColorCode.white, message, "\n"));
+    	if(println) System.out.print(reqcolor ? String.format("%s[%s] %s[WARN] %s: %s%s", ANSIEscapeColorCode.blue, Reference.time.get(), ANSIEscapeColorCode.green, ANSIEscapeColorCode.white, message, "\n") : String.format("[%s] [WARN] : %s%s", Reference.time.get(), message, "\n"));
         
-    	return reqcolor ? String.format("%s[%s] %s[WARN] %s: %s%s", ANSIEscapeColorCode.blue, Reference.time.get(), ANSIEscapeColorCode.green, ANSIEscapeColorCode.white, message, "\n") : 
-        	String.format("[%s] [WARN] : %s%s", Reference.time.get(), message, "\n");
+    	return String.format("[%s] [WARN] : %s%s", Reference.time.get(), message, "\n");
     }
     
     public static String error(Object method, Object o, Object message, boolean println, boolean reqcolor){
