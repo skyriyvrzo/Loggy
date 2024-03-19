@@ -14,7 +14,7 @@ public class LogUtil {
 	private String dirTarget;
 	private String os;
 	
-	static SimpleDateFormat date = new SimpleDateFormat("dd-MM-yyyy");
+	static SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
 	
 	public LogUtil() {
 			
