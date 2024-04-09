@@ -123,6 +123,20 @@ public final class Logger {
 			if(writeFile) writeFile(noColor);
 			
 			return noColor;
+		}else if(level != null) {
+			String noColor = String.format("[%s] [%s] : %s \n", Reference.time.get(), level.getLevelName.get(), msg);
+			
+			if(println) {
+				if(reqColor) {
+					System.out.print(String.format("%s[%s] %s[%s] %s: %s\n", ANSIEscapeColorCode.blue, Reference.time.get(), ANSIEscapeColorCode.red, level.getLevelName.get(), ANSIEscapeColorCode.white, msg));
+				}else {
+					System.out.print(noColor);
+				}
+			}
+			
+			if(writeFile) writeFile(noColor);
+			
+			return noColor;
 		}
 		
 		return null;
@@ -210,6 +224,29 @@ public final class Logger {
 							Reference.time.get(),
 							ANSIEscapeColorCode.red,
 							object1,
+							ANSIEscapeColorCode.cyan,
+							object2,
+							ANSIEscapeColorCode.white,
+							msg));
+				}else {
+					System.out.print(noColor);
+				}
+				
+				if(writeFile) writeFile(noColor);
+				
+				return noColor;
+			} 
+		}else if(level != null) {
+			String noColor = String.format("[%s] [%s/%s] (%s) : %s\n", Reference.time.get(), object1, level.getLevelName.get(), object2, msg);
+			
+			if(println) {
+				if(reqColor) {
+					System.out.print(String.format("%s[%s] %s[%s/%s] %s(%s) %s: %s\n",
+							ANSIEscapeColorCode.blue,
+							Reference.time.get(),
+							ANSIEscapeColorCode.red,
+							object1,
+							level.getLevelName.get(),
 							ANSIEscapeColorCode.cyan,
 							object2,
 							ANSIEscapeColorCode.white,
