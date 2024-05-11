@@ -1,7 +1,6 @@
 package com.get.lib.Logging;
 
-import java.util.function.Supplier;
-
+@Deprecated
 public final class Level {
 
 	private String level;
@@ -15,6 +14,8 @@ public final class Level {
 	public static final Level WARNING = new Level("WARNING");
 	public static final Level ERROR = new Level("ERROR");
 	
-	public Supplier<String> getLevelName = () -> level;
+	public String getName() {
+		return level;
+	}
 	
 }
