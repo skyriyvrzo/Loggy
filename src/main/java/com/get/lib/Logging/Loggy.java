@@ -106,7 +106,7 @@ public final class Loggy {
 			
 			if(println) {
 				if(reqColor) {
-					System.out.print(String.format("%s[%s] %s[ALL] %s: %s\n", ANSIEscapeColorCode.blue, Reference.time.get(), ANSIEscapeColorCode.green, ANSIEscapeColorCode.white, msg));
+					System.out.print(String.format("%s[%s] %s[ALL] %s: %s\n", ANSIEscapeColorCode.blue, Reference.time.get(), ANSIEscapeColorCode.white, ANSIEscapeColorCode.white, msg));
 				}else {
 					System.out.print(noColor);
 				}
@@ -121,7 +121,7 @@ public final class Loggy {
 			
 			if(println) {
 				if(reqColor) {
-					System.out.print(String.format("%s[%s] %s[TRACE] %s: %s\n", ANSIEscapeColorCode.blue, Reference.time.get(), ANSIEscapeColorCode.green, ANSIEscapeColorCode.white, msg));
+					System.out.print(String.format("%s[%s] %s[TRACE] %s: %s\n", ANSIEscapeColorCode.blue, Reference.time.get(), ANSIEscapeColorCode.black, ANSIEscapeColorCode.white, msg));
 				}else {
 					System.out.print(noColor);
 				}
@@ -225,7 +225,7 @@ public final class Loggy {
 					System.out.print(String.format("%s[%s] %s[%s/ALL] %s(%s) %s: %s\n",
 							ANSIEscapeColorCode.blue,
 							Reference.time.get(),
-							ANSIEscapeColorCode.green,
+							ANSIEscapeColorCode.white,
 							object1,
 							ANSIEscapeColorCode.cyan,
 							object2,
@@ -247,7 +247,7 @@ public final class Loggy {
 					System.out.print(String.format("%s[%s] %s[%s/TRACE] %s(%s) %s: %s\n",
 							ANSIEscapeColorCode.blue,
 							Reference.time.get(),
-							ANSIEscapeColorCode.green,
+							ANSIEscapeColorCode.black,
 							object1,
 							ANSIEscapeColorCode.cyan,
 							object2,
