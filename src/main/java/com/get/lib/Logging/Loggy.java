@@ -75,9 +75,9 @@ public final class Loggy {
 		File file = new File(this.path);
 		
 		try {
-			file.mkdir();
+			file.mkdirs();
 		}catch (Exception e) {
-			log(Level.ERROR, e.getMessage());
+			log(Level.ERROR, e);
 		}
 	}
 	
@@ -91,7 +91,7 @@ public final class Loggy {
 				wr.write(object.toString());
 				writeSuccessful = true;
 			} catch(IOException e) {
-				log(Level.ERROR, e.getMessage());
+				log(Level.ERROR, e);
 			}
 		}
 	}
@@ -375,5 +375,9 @@ public final class Loggy {
 			return level.getName();
 		}
 		return null;
+	}
+	
+	public String getPath() {
+		return path;
 	}
 }
