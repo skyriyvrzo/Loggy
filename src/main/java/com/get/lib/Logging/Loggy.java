@@ -98,7 +98,7 @@ public final class Loggy {
 	
 	public String log(Level level, Object message) {
 		
-		String msg = message.toString() == null ? null : message.toString();
+		String msg = message.toString() == null ? "null" : message.toString();
 		
 		if(level == Level.ALL) {
 			
@@ -213,9 +213,9 @@ public final class Loggy {
 	
 	public String log(Level level, Object o1, Object o2, Object message) {
 		
-		String object1 = o1.toString() == null ? null : o1.toString();
-		String object2 = o2.toString() == null ? null : o2.toString();
-		String msg = message.toString() == null ? null : message.toString();
+		String object1 = o1.toString() == null ? "null" : o1.toString();
+		String object2 = o2.toString() == null ? "null" : o2.toString();
+		String msg = message.toString() == null ? "null" : message.toString();
 		
 		if(level == Level.ALL) {
 			String noColor = String.format("[%s] [%s/ALL] (%s) : %s\n", Reference.time.get(), object1, object2, msg);
