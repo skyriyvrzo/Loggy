@@ -8,6 +8,6 @@ public final class Reference {
 	
     public static final String Version = "0.1.51";
     public static final SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
-    public static final Supplier<String> time = () -> timeFormat.format(Calendar.getInstance().getTime());
+    public static final String time = timeFormat.format(Calendar.getInstance().getTime());
     
 }

@@ -5,7 +5,7 @@ import xyz.cuddlecloud.javax.logging.Loggy.Level;
 
 public class Test {
 
-	public static void mainny(String...strings) throws InterruptedException {
+	public static void main(String...strings) throws InterruptedException {
 		Loggy l = Loggy.getLoggy(null, true, true);
 		
 		l.log(Level.ALL, l);
