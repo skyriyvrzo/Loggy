@@ -1,7 +1,7 @@
 package com.get.test;
 
-import com.get.lib.Logging.Loggy;
-import com.get.lib.Logging.Loggy.Level;
+import xyz.cuddlecloud.javax.logging.Loggy;
+import xyz.cuddlecloud.javax.logging.Loggy.Level;
 
 public class Test {
 

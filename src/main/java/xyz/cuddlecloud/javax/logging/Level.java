@@ -1,4 +1,4 @@
-package com.get.lib.Logging;
+package xyz.cuddlecloud.javax.logging;
 
 @Deprecated
 public final class Level {

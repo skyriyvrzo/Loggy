@@ -1,4 +1,4 @@
-package com.get.lib.Logging;
+package xyz.cuddlecloud.javax.logging;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -7,8 +7,8 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-import com.get.lib.Logging.util.Reference;
-import com.get.lib.colorlib.ANSIEscapeColorCode;
+import xyz.cuddlecloud.javax.colorlib.ANSIEscapeColorCode;
+import xyz.cuddlecloud.javax.logging.util.Reference;
 
 public final class Loggy {
 
@@ -38,13 +38,13 @@ public final class Loggy {
 	}
 	
 	private String path = "logs";
-	private boolean println;
-	private boolean reqColor;
-	private boolean writeFile;
+	private final boolean println;
+	private final boolean reqColor;
+	private final boolean writeFile;
 	
 	private Loggy(String path, boolean println, boolean reqColor, boolean writeFile) {
 		
-		if(path != null && path != "") {
+		if(path != null && !path.isEmpty()) {
 			this.path = path;
 		}
 		
@@ -55,19 +55,19 @@ public final class Loggy {
 		if(writeFile) mkdir();
 	}
 	
-	public static final Loggy getLoggy(String path) {
+	public static Loggy getLoggy(String path) {
 		return new Loggy(path, false, false, false);
 	}
 	
-	public static final Loggy getLoggy(String path, boolean println) {
+	public static Loggy getLoggy(String path, boolean println) {
 		return new Loggy(path, println, false, false);
 	}
 	
-	public static final Loggy getLoggy(String path, boolean println, boolean reqColor) {
+	public static Loggy getLoggy(String path, boolean println, boolean reqColor) {
 		return new Loggy(path, println, reqColor, false);
 	}
 	
-	public static final Loggy getLoggy(String path, boolean println, boolean reqColor, boolean writeFile) {
+	public static Loggy getLoggy(String path, boolean println, boolean reqColor, boolean writeFile) {
 		return new Loggy(path, println, reqColor, writeFile);
 	}
 	
@@ -99,7 +99,7 @@ public final class Loggy {
 	public String log(Level level, Object message) {
 		
 		String msg = message.toString() == null ? "null" : message.toString();
-		
+
 		if(level == Level.ALL) {
 			
 			String noColor = String.format("[%s] [ALL] : %s\n", Reference.time.get(), msg);
@@ -113,7 +113,7 @@ public final class Loggy {
 			}
 			
 			if(writeFile) writeFile(noColor);
-			
+
 			return noColor;
 		}else if(level == Level.TRACE) {
 
@@ -128,7 +128,7 @@ public final class Loggy {
 			}
 			
 			if(writeFile) writeFile(noColor);
-			
+
 			return noColor;
 		}else if(level == Level.DEBUG) {
 
@@ -143,7 +143,7 @@ public final class Loggy {
 			}
 			
 			if(writeFile) writeFile(noColor);
-			
+
 			return noColor;
 		}else if(level == Level.INFO) {
 
@@ -158,7 +158,7 @@ public final class Loggy {
 			}
 			
 			if(writeFile) writeFile(noColor);
-			
+
 			return noColor;
 		}else if(level == Level.WARN) {
 
@@ -173,7 +173,7 @@ public final class Loggy {
 			}
 			
 			if(writeFile) writeFile(noColor);
-			
+
 			return noColor;
 		}else if(level == Level.ERROR) {
 
@@ -188,7 +188,7 @@ public final class Loggy {
 			}
 			
 			if(writeFile) writeFile(noColor);
-			
+
 			return noColor;
 		}else if(level == Level.FATAL) {
 
@@ -203,7 +203,7 @@ public final class Loggy {
 			}
 			
 			if(writeFile) writeFile(noColor);
-			
+
 			return noColor;
 		}else if(level == Level.OFF) {
 			return level.getName();

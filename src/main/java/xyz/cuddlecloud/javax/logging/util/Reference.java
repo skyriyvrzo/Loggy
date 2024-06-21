@@ -1,4 +1,4 @@
-package com.get.lib.Logging.util;
+package xyz.cuddlecloud.javax.logging.util;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
