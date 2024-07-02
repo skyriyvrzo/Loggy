@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>xyz.cuddlecloud.javax.logging</groupId>
   <artifactId>Loggy</artifactId>
-  <version>0.1.52</version>
+  <version>0.1.54</version>
   <build>
     <plugins>
       <plugin>
@@ -29,8 +29,8 @@
         <artifactId>maven-compiler-plugin</artifactId>
         <version>3.13.0</version>
         <configuration>
-          <source>8</source>
-          <target>8</target>
+          <source>16</source>
+          <target>16</target>
         </configuration>
       </plugin>
     </plugins>

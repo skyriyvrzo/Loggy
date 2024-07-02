@@ -36,6 +36,12 @@ public final class Loggy {
 			return severity;
 		}
 	}
+
+	public static class Utility {
+		public static String getSimpleClassName(Object klass) {
+			return klass == null ? "null" : klass.getClass().getSimpleName();
+		}
+	}
 	
 	private String path = "logs";
 	private final boolean println;
@@ -98,7 +104,7 @@ public final class Loggy {
 	
 	public String log(Level level, Object message) {
 		
-		String msg = message.toString() == null ? "null" : message.toString();
+		String msg = message == null ? "null" : message.toString();
 
 		if(level == Level.ALL) {
 			
@@ -213,9 +219,9 @@ public final class Loggy {
 	
 	public String log(Level level, Object o1, Object o2, Object message) {
 		
-		String object1 = o1.toString() == null ? "null" : o1.toString();
-		String object2 = o2.toString() == null ? "null" : o2.toString();
-		String msg = message.toString() == null ? "null" : message.toString();
+		String object1 = o1 == null ? "null" : o1.toString();
+		String object2 = o2 == null ? "null" : o2.toString();
+		String msg = message == null ? "null" : message.toString();
 		
 		if(level == Level.ALL) {
 			String noColor = String.format("[%s] [%s/ALL] (%s) : %s\n", Reference.time.get(), object1, object2, msg);
@@ -376,7 +382,26 @@ public final class Loggy {
 		}
 		return null;
 	}
-	
+
+	public String sout(Object o) {
+		String object = o == null ? "null" : o.toString();
+		if(println) {
+			if (reqColor) {
+				System.out.print(String.format("%s[%s] %s[SOUT] : %s\n",
+						ANSIEscapeColorCode.blue,
+						Reference.time.get(),
+						ANSIEscapeColorCode.white,
+						object));
+			} else {
+				System.out.print(object);
+			}
+
+			if (writeFile) writeFile(object);
+		}
+
+		return object;
+	}
+
 	public String getPath() {
 		return path;
 	}
