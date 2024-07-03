@@ -39,7 +39,15 @@ public final class Loggy {
 
 	public static class Utility {
 		public static String getSimpleClassName(Object klass) {
-			return klass == null ? "null" : klass.getClass().getSimpleName();
+			if(klass == null) {
+				return "null";
+			}
+
+			if(klass instanceof Class) {
+				return ((Class<?>)klass).getSimpleName();
+			}
+
+			return klass.getClass().getSimpleName();
 		}
 	}
 	
@@ -387,13 +395,15 @@ public final class Loggy {
 		String object = o == null ? "null" : o.toString();
 		if(println) {
 			if (reqColor) {
-				System.out.print(String.format("%s[%s] %s[SOUT] : %s\n",
+				System.out.print(String.format("%s[%s] %s[STDOUT] : %s\n",
 						ANSIEscapeColorCode.blue,
 						Reference.time.get(),
 						ANSIEscapeColorCode.white,
 						object));
 			} else {
-				System.out.print(object);
+				System.out.print(String.format("[%s] [STDOUT] : %s\n",
+						Reference.time.get(),
+						object));
 			}
 
 			if (writeFile) writeFile(object);
