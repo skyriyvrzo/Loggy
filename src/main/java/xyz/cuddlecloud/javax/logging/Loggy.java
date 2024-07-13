@@ -406,7 +406,7 @@ public final class Loggy {
 						object));
 			}
 
-			if (writeFile) writeFile(object);
+			if (writeFile) writeFile(object + "\n");
 		}
 
 		return object;
