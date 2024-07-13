@@ -248,11 +248,11 @@ public final class Loggy {
 				}else {
 					System.out.print(noColor);
 				}
-				
-				if(writeFile) writeFile(noColor);
-				
-				return noColor;
-			} 
+			}
+
+			if(writeFile) writeFile(noColor);
+
+			return noColor;
 		}else if(level == Level.TRACE) {
 			String noColor = String.format("[%s] [%s/TRACE] (%s) : %s\n", Reference.time.get(), object1, object2, msg);
 			
@@ -270,11 +270,11 @@ public final class Loggy {
 				}else {
 					System.out.print(noColor);
 				}
-				
-				if(writeFile) writeFile(noColor);
-				
-				return noColor;
-			} 
+			}
+
+			if(writeFile) writeFile(noColor);
+
+			return noColor;
 		}else if(level == Level.DEBUG) {
 			String noColor = String.format("[%s] [%s/DEBUG] (%s) : %s\n", Reference.time.get(), object1, object2, msg);
 			
@@ -292,11 +292,10 @@ public final class Loggy {
 				}else {
 					System.out.print(noColor);
 				}
-				
-				if(writeFile) writeFile(noColor);
-				
-				return noColor;
-			} 
+			}
+			if(writeFile) writeFile(noColor);
+
+			return noColor;
 		}else if(level == Level.INFO) {
 			String noColor = String.format("[%s] [%s/INFO] (%s) : %s\n", Reference.time.get(), object1, object2, msg);
 			
@@ -314,11 +313,10 @@ public final class Loggy {
 				}else {
 					System.out.print(noColor);
 				}
-				
-				if(writeFile) writeFile(noColor);
-				
-				return noColor;
-			} 
+			}
+			if(writeFile) writeFile(noColor);
+
+			return noColor;
 		}else if(level == Level.WARN) {
 			String noColor = String.format("[%s] [%s/WARN] (%s) : %s\n", Reference.time.get(), object1, object2, msg);
 			
@@ -336,11 +334,10 @@ public final class Loggy {
 				}else {
 					System.out.print(noColor);
 				}
-				
-				if(writeFile) writeFile(noColor);
-				
-				return noColor;
-			} 
+			}
+			if(writeFile) writeFile(noColor);
+
+			return noColor;
 		}else if(level == Level.ERROR) {
 			String noColor = String.format("[%s] [%s/ERROR] (%s) : %s\n", Reference.time.get(), object1, object2, msg);
 			
@@ -358,11 +355,10 @@ public final class Loggy {
 				}else {
 					System.out.print(noColor);
 				}
-				
-				if(writeFile) writeFile(noColor);
-				
-				return noColor;
-			} 
+			}
+			if(writeFile) writeFile(noColor);
+
+			return noColor;
 		}else if(level == Level.FATAL) {
 			String noColor = String.format("[%s] [%s/FATAL] (%s) : %s\n", Reference.time.get(), object1, object2, msg);
 			
@@ -380,11 +376,10 @@ public final class Loggy {
 				}else {
 					System.out.print(noColor);
 				}
-				
-				if(writeFile) writeFile(noColor);
-				
-				return noColor;
-			} 
+			}
+			if(writeFile) writeFile(noColor);
+
+			return noColor;
 		}else if(level == Level.OFF) {
 			return level.getName();
 		}
@@ -405,9 +400,8 @@ public final class Loggy {
 			} else {
 				System.out.print(noColor);
 			}
-
-			if (writeFile) writeFile(noColor + "\n");
 		}
+		if (writeFile) writeFile(noColor + "\n");
 
 		return noColor;
 	}
