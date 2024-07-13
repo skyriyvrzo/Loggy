@@ -392,24 +392,24 @@ public final class Loggy {
 	}
 
 	public String sout(Object o) {
-		String object = o == null ? "null" : o.toString();
+		String noColor = o == null ? "null" : String.format("[%s] [STDOUT] : %s\n",
+				Reference.time.get(),
+				o.toString());
 		if(println) {
 			if (reqColor) {
 				System.out.print(String.format("%s[%s] %s[STDOUT] : %s\n",
 						ANSIEscapeColorCode.blue,
 						Reference.time.get(),
 						ANSIEscapeColorCode.white,
-						object));
+						o == null ? "null" : o.toString()));
 			} else {
-				System.out.print(String.format("[%s] [STDOUT] : %s\n",
-						Reference.time.get(),
-						object));
+				System.out.print(noColor);
 			}
 
-			if (writeFile) writeFile(object + "\n");
+			if (writeFile) writeFile(noColor + "\n");
 		}
 
-		return object;
+		return noColor;
 	}
 
 	public String getPath() {
