@@ -1,14 +1,13 @@
 package xyz.cuddlecloud.javax.logging;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 import xyz.cuddlecloud.javax.colorlib.ANSIEscapeColorCode;
 import xyz.cuddlecloud.javax.logging.util.Reference;
+
+import javax.swing.*;
 
 public final class Loggy {
 
@@ -50,14 +49,17 @@ public final class Loggy {
 			return klass.getClass().getSimpleName();
 		}
 	}
-	
+
+	private static Loggy loggy;
 	private String path = "logs";
 	private final boolean println;
 	private final boolean reqColor;
 	private final boolean writeFile;
 	
 	private Loggy(String path, boolean println, boolean reqColor, boolean writeFile) {
-		
+
+		OutputInterceptor.a();
+
 		if(path != null && !path.isEmpty()) {
 			this.path = path;
 		}
@@ -68,21 +70,44 @@ public final class Loggy {
 		
 		if(writeFile) mkdir();
 	}
-	
-	public static Loggy getLoggy(String path) {
-		return new Loggy(path, false, false, false);
+
+	public static synchronized Loggy getLoggy() {
+		if(loggy == null) {
+			loggy = new Loggy("", true, false, false);
+		}
+
+		return loggy;
+	}
+
+	public static synchronized Loggy getLoggy(String path) {
+		if(loggy == null) {
+			loggy = new Loggy(path, false, false, false);
+		}
+
+		return loggy;
 	}
 	
-	public static Loggy getLoggy(String path, boolean println) {
-		return new Loggy(path, println, false, false);
+	public static synchronized Loggy getLoggy(String path, boolean println) {
+		if(loggy == null) {
+			loggy = new Loggy(path, println, false, false);
+		}
+
+		return loggy;
 	}
 	
-	public static Loggy getLoggy(String path, boolean println, boolean reqColor) {
-		return new Loggy(path, println, reqColor, false);
+	public static synchronized Loggy getLoggy(String path, boolean println, boolean reqColor) {
+		if(loggy == null) {
+			loggy = new Loggy(path, println, reqColor, false);
+		}
+
+		return loggy;
 	}
 	
-	public static Loggy getLoggy(String path, boolean println, boolean reqColor, boolean writeFile) {
-		return new Loggy(path, println, reqColor, writeFile);
+	public static synchronized Loggy getLoggy(String path, boolean println, boolean reqColor, boolean writeFile) {
+		if(loggy == null) {
+			loggy = new Loggy(path, println, reqColor, writeFile);
+		}
+		return loggy;
 	}
 	
 	private void mkdir() {
@@ -115,107 +140,107 @@ public final class Loggy {
 		String msg = message == null ? "null" : message.toString();
 
 		if(level == Level.ALL) {
-			
-			String noColor = String.format("[%s] [ALL] : %s\n", Reference.time.get(), msg);
-			
+
+			String noColor = String.format("[%s] [ALL] %s\n", Reference.time.get(), msg);
+
 			if(println) {
 				if(reqColor) {
-					System.out.print(String.format("%s[%s] %s[ALL] %s: %s\n", ANSIEscapeColorCode.blue, Reference.time.get(), ANSIEscapeColorCode.white, ANSIEscapeColorCode.white, msg));
+					OutputInterceptor.print(String.format("%s[%s] %s[ALL]%s %s\n", ANSIEscapeColorCode.blue, Reference.time.get(), ANSIEscapeColorCode.white, ANSIEscapeColorCode.white, msg));
 				}else {
-					System.out.print(noColor);
+					OutputInterceptor.print(noColor);
 				}
 			}
-			
+
 			if(writeFile) writeFile(noColor);
 
 			return noColor;
 		}else if(level == Level.TRACE) {
 
-			String noColor = String.format("[%s] [TRACE] : %s\n", Reference.time.get(), msg);
-			
+			String noColor = String.format("[%s] [TRACE] %s\n", Reference.time.get(), msg);
+
 			if(println) {
 				if(reqColor) {
-					System.out.print(String.format("%s[%s] %s[TRACE] %s: %s\n", ANSIEscapeColorCode.blue, Reference.time.get(), ANSIEscapeColorCode.black, ANSIEscapeColorCode.white, msg));
+					OutputInterceptor.print(String.format("%s[%s] %s[TRACE]%s %s\n", ANSIEscapeColorCode.blue, Reference.time.get(), ANSIEscapeColorCode.black, ANSIEscapeColorCode.white, msg));
 				}else {
-					System.out.print(noColor);
+					OutputInterceptor.print(noColor);
 				}
 			}
-			
+
 			if(writeFile) writeFile(noColor);
 
 			return noColor;
 		}else if(level == Level.DEBUG) {
 
-			String noColor = String.format("[%s] [DEBUG] : %s\n", Reference.time.get(), msg);
-			
+			String noColor = String.format("[%s] [DEBUG] %s\n", Reference.time.get(), msg);
+
 			if(println) {
 				if(reqColor) {
-					System.out.print(String.format("%s[%s] %s[DEBUG] %s: %s\n", ANSIEscapeColorCode.blue, Reference.time.get(), ANSIEscapeColorCode.light_magenta, ANSIEscapeColorCode.white, msg));
+					OutputInterceptor.print(String.format("%s[%s] %s[DEBUG]%s %s\n", ANSIEscapeColorCode.blue, Reference.time.get(), ANSIEscapeColorCode.light_magenta, ANSIEscapeColorCode.white, msg));
 				}else {
-					System.out.print(noColor);
+					OutputInterceptor.print(noColor);
 				}
 			}
-			
+
 			if(writeFile) writeFile(noColor);
 
 			return noColor;
 		}else if(level == Level.INFO) {
 
-			String noColor = String.format("[%s] [INFO] : %s\n", Reference.time.get(), msg);
-			
+			String noColor = String.format("[%s] [INFO] %s\n", Reference.time.get(), msg);
+
 			if(println) {
 				if(reqColor) {
-					System.out.print(String.format("%s[%s] %s[INFO] %s: %s\n", ANSIEscapeColorCode.blue, Reference.time.get(), ANSIEscapeColorCode.green, ANSIEscapeColorCode.white, msg));
+					OutputInterceptor.print(String.format("%s[%s] %s[INFO]%s %s\n", ANSIEscapeColorCode.blue, Reference.time.get(), ANSIEscapeColorCode.green, ANSIEscapeColorCode.white, msg));
 				}else {
-					System.out.print(noColor);
+					OutputInterceptor.print(noColor);
 				}
 			}
-			
+
 			if(writeFile) writeFile(noColor);
 
 			return noColor;
 		}else if(level == Level.WARN) {
 
-			String noColor = String.format("[%s] [WARN] : %s\n", Reference.time.get(), msg);
-			
+			String noColor = String.format("[%s] [WARN] %s\n", Reference.time.get(), msg);
+
 			if(println) {
 				if(reqColor) {
-					System.out.print(String.format("%s[%s] %s[WARN] %s: %s\n", ANSIEscapeColorCode.blue, Reference.time.get(), ANSIEscapeColorCode.yellow, ANSIEscapeColorCode.white, msg));
+					OutputInterceptor.print(String.format("%s[%s] %s[WARN]%s %s\n", ANSIEscapeColorCode.blue, Reference.time.get(), ANSIEscapeColorCode.yellow, ANSIEscapeColorCode.white, msg));
 				}else {
-					System.out.print(noColor);
+					OutputInterceptor.print(noColor);
 				}
 			}
-			
+
 			if(writeFile) writeFile(noColor);
 
 			return noColor;
 		}else if(level == Level.ERROR) {
 
-			String noColor = String.format("[%s] [ERROR] : %s \n", Reference.time.get(), msg);
-			
+			String noColor = String.format("[%s] [ERROR] %s\n", Reference.time.get(), msg);
+
 			if(println) {
 				if(reqColor) {
-					System.out.print(String.format("%s[%s] %s[ERROR] %s: %s\n", ANSIEscapeColorCode.blue, Reference.time.get(), ANSIEscapeColorCode.light_red, ANSIEscapeColorCode.white, msg));
+					OutputInterceptor.print(String.format("%s[%s] %s[ERROR]%s %s\n", ANSIEscapeColorCode.blue, Reference.time.get(), ANSIEscapeColorCode.light_red, ANSIEscapeColorCode.white, msg));
 				}else {
-					System.out.print(noColor);
+					OutputInterceptor.print(noColor);
 				}
 			}
-			
+
 			if(writeFile) writeFile(noColor);
 
 			return noColor;
 		}else if(level == Level.FATAL) {
 
-			String noColor = String.format("[%s] [FATAL] : %s \n", Reference.time.get(), msg);
-			
+			String noColor = String.format("[%s] [FATAL] %s\n", Reference.time.get(), msg);
+
 			if(println) {
 				if(reqColor) {
-					System.out.print(String.format("%s[%s] %s[FATAL] %s: %s\n", ANSIEscapeColorCode.blue, Reference.time.get(), ANSIEscapeColorCode.red, ANSIEscapeColorCode.white, msg));
+					OutputInterceptor.print(String.format("%s[%s] %s[FATAL]%s %s\n", ANSIEscapeColorCode.blue, Reference.time.get(), ANSIEscapeColorCode.red, ANSIEscapeColorCode.white, msg));
 				}else {
-					System.out.print(noColor);
+					OutputInterceptor.print(noColor);
 				}
 			}
-			
+
 			if(writeFile) writeFile(noColor);
 
 			return noColor;
@@ -224,19 +249,19 @@ public final class Loggy {
 		}
 		return null;
 	}
-	
-	public String log(Level level, Object o1, Object o2, Object message) {
-		
+
+	public String log(Level level, Object o1, Object source, Object message) {
+
 		String object1 = o1 == null ? "null" : o1.toString();
-		String object2 = o2 == null ? "null" : o2.toString();
+		String object2 = source == null ? "null" : source.toString();
 		String msg = message == null ? "null" : message.toString();
-		
+
 		if(level == Level.ALL) {
-			String noColor = String.format("[%s] [%s/ALL] (%s) : %s\n", Reference.time.get(), object1, object2, msg);
-			
+			String noColor = String.format("[%s] [%s/ALL] (%s) %s\n", Reference.time.get(), object1, object2, msg);
+
 			if(println) {
 				if(reqColor) {
-					System.out.print(String.format("%s[%s] %s[%s/ALL] %s(%s) %s: %s\n",
+					OutputInterceptor.print(String.format("%s[%s] %s[%s/ALL] %s(%s) %s%s\n",
 							ANSIEscapeColorCode.blue,
 							Reference.time.get(),
 							ANSIEscapeColorCode.white,
@@ -246,7 +271,7 @@ public final class Loggy {
 							ANSIEscapeColorCode.white,
 							msg));
 				}else {
-					System.out.print(noColor);
+					OutputInterceptor.print(noColor);
 				}
 			}
 
@@ -254,11 +279,11 @@ public final class Loggy {
 
 			return noColor;
 		}else if(level == Level.TRACE) {
-			String noColor = String.format("[%s] [%s/TRACE] (%s) : %s\n", Reference.time.get(), object1, object2, msg);
-			
+			String noColor = String.format("[%s] [%s/TRACE] (%s) %s\n", Reference.time.get(), object1, object2, msg);
+
 			if(println) {
 				if(reqColor) {
-					System.out.print(String.format("%s[%s] %s[%s/TRACE] %s(%s) %s: %s\n",
+					OutputInterceptor.print(String.format("%s[%s] %s[%s/TRACE] %s(%s) %s%s\n",
 							ANSIEscapeColorCode.blue,
 							Reference.time.get(),
 							ANSIEscapeColorCode.black,
@@ -268,7 +293,7 @@ public final class Loggy {
 							ANSIEscapeColorCode.white,
 							msg));
 				}else {
-					System.out.print(noColor);
+					OutputInterceptor.print(noColor);
 				}
 			}
 
@@ -276,11 +301,11 @@ public final class Loggy {
 
 			return noColor;
 		}else if(level == Level.DEBUG) {
-			String noColor = String.format("[%s] [%s/DEBUG] (%s) : %s\n", Reference.time.get(), object1, object2, msg);
-			
+			String noColor = String.format("[%s] [%s/DEBUG] (%s) %s\n", Reference.time.get(), object1, object2, msg);
+
 			if(println) {
 				if(reqColor) {
-					System.out.print(String.format("%s[%s] %s[%s/DEBUG] %s(%s) %s: %s\n",
+					OutputInterceptor.print(String.format("%s[%s] %s[%s/DEBUG] %s(%s) %s%s\n",
 							ANSIEscapeColorCode.blue,
 							Reference.time.get(),
 							ANSIEscapeColorCode.light_magenta,
@@ -290,18 +315,18 @@ public final class Loggy {
 							ANSIEscapeColorCode.white,
 							msg));
 				}else {
-					System.out.print(noColor);
+					OutputInterceptor.print(noColor);
 				}
 			}
 			if(writeFile) writeFile(noColor);
 
 			return noColor;
 		}else if(level == Level.INFO) {
-			String noColor = String.format("[%s] [%s/INFO] (%s) : %s\n", Reference.time.get(), object1, object2, msg);
-			
+			String noColor = String.format("[%s] [%s/INFO] (%s) %s\n", Reference.time.get(), object1, object2, msg);
+
 			if(println) {
 				if(reqColor) {
-					System.out.print(String.format("%s[%s] %s[%s/INFO] %s(%s) %s: %s\n",
+					OutputInterceptor.print(String.format("%s[%s] %s[%s/INFO] %s(%s) %s%s\n",
 							ANSIEscapeColorCode.blue,
 							Reference.time.get(),
 							ANSIEscapeColorCode.green,
@@ -311,18 +336,18 @@ public final class Loggy {
 							ANSIEscapeColorCode.white,
 							msg));
 				}else {
-					System.out.print(noColor);
+					OutputInterceptor.print(noColor);
 				}
 			}
 			if(writeFile) writeFile(noColor);
 
 			return noColor;
 		}else if(level == Level.WARN) {
-			String noColor = String.format("[%s] [%s/WARN] (%s) : %s\n", Reference.time.get(), object1, object2, msg);
-			
+			String noColor = String.format("[%s] [%s/WARN] (%s) %s\n", Reference.time.get(), object1, object2, msg);
+
 			if(println) {
 				if(reqColor) {
-					System.out.print(String.format("%s[%s] %s[%s/WARN] %s(%s) %s: %s\n",
+					OutputInterceptor.print(String.format("%s[%s] %s[%s/WARN] %s(%s) %s%s\n",
 							ANSIEscapeColorCode.blue,
 							Reference.time.get(),
 							ANSIEscapeColorCode.yellow,
@@ -332,18 +357,18 @@ public final class Loggy {
 							ANSIEscapeColorCode.white,
 							msg));
 				}else {
-					System.out.print(noColor);
+					OutputInterceptor.print(noColor);
 				}
 			}
 			if(writeFile) writeFile(noColor);
 
 			return noColor;
 		}else if(level == Level.ERROR) {
-			String noColor = String.format("[%s] [%s/ERROR] (%s) : %s\n", Reference.time.get(), object1, object2, msg);
-			
+			String noColor = String.format("[%s] [%s/ERROR] (%s) %s\n", Reference.time.get(), object1, object2, msg);
+
 			if(println) {
 				if(reqColor) {
-					System.out.print(String.format("%s[%s] %s[%s/ERROR] %s(%s) %s: %s\n",
+					OutputInterceptor.print(String.format("%s[%s] %s[%s/ERROR] %s(%s) %s%s\n",
 							ANSIEscapeColorCode.blue,
 							Reference.time.get(),
 							ANSIEscapeColorCode.light_red,
@@ -353,18 +378,18 @@ public final class Loggy {
 							ANSIEscapeColorCode.white,
 							msg));
 				}else {
-					System.out.print(noColor);
+					OutputInterceptor.print(noColor);
 				}
 			}
 			if(writeFile) writeFile(noColor);
 
 			return noColor;
 		}else if(level == Level.FATAL) {
-			String noColor = String.format("[%s] [%s/FATAL] (%s) : %s\n", Reference.time.get(), object1, object2, msg);
-			
+			String noColor = String.format("[%s] [%s/FATAL] (%s) %s\n", Reference.time.get(), object1, object2, msg);
+
 			if(println) {
 				if(reqColor) {
-					System.out.print(String.format("%s[%s] %s[%s/FATAL] %s(%s) %s: %s\n",
+					OutputInterceptor.print(String.format("%s[%s] %s[%s/FATAL] %s(%s) %s%s\n",
 							ANSIEscapeColorCode.blue,
 							Reference.time.get(),
 							ANSIEscapeColorCode.red,
@@ -374,7 +399,7 @@ public final class Loggy {
 							ANSIEscapeColorCode.white,
 							msg));
 				}else {
-					System.out.print(noColor);
+					OutputInterceptor.print(noColor);
 				}
 			}
 			if(writeFile) writeFile(noColor);
@@ -386,24 +411,12 @@ public final class Loggy {
 		return null;
 	}
 
-	public String sout(Object o) {
-		String noColor = o == null ? "null" : String.format("[%s] [STDOUT] : %s\n",
+	String b(Object o) {
+		String s = o == null ? "null" : String.format("[%s] [INFO] [STDOUT]: %s",
 				Reference.time.get(),
-				o.toString());
-		if(println) {
-			if (reqColor) {
-				System.out.print(String.format("%s[%s] %s[STDOUT] : %s\n",
-						ANSIEscapeColorCode.blue,
-						Reference.time.get(),
-						ANSIEscapeColorCode.white,
-						o == null ? "null" : o.toString()));
-			} else {
-				System.out.print(noColor);
-			}
-		}
-		if (writeFile) writeFile(noColor + "\n");
+                o);
 
-		return noColor;
+		return s;
 	}
 
 	public String getPath() {
