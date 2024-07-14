@@ -24,9 +24,12 @@ class Test {
         l.log(Level.ERROR, l, l, l);
         l.log(Level.FATAL, l, l, l);
 
-        System.out.println("SOUT");
-        System.out.print(true);
-        OutputInterceptor.println("\nS");
-        OutputInterceptor.print("A");
+        System.out.println();
+
+        System.out.print("out");
+        System.out.println("outln");
+
+        System.err.print("err");
+        System.err.println("errln");
     }
 }
