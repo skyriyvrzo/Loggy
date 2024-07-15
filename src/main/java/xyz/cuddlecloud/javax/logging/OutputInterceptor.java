@@ -4,8 +4,8 @@ import java.io.PrintStream;
 
 public final class OutputInterceptor {
 
-    private static PrintStream originalOut = System.out;
-    private static PrintStream originalErr = System.err;
+    private static final PrintStream originalOut = System.out;
+    private static final PrintStream originalErr = System.err;
     private static PrintStream interceptorOut;
     private static PrintStream interceptorErr;
 

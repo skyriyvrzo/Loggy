@@ -7,8 +7,6 @@ import java.time.format.DateTimeFormatter;
 import xyz.cuddlecloud.javax.colorlib.ANSIEscapeColorCode;
 import xyz.cuddlecloud.javax.logging.util.Reference;
 
-import javax.swing.*;
-
 public final class Loggy {
 
 	public enum Level {
@@ -55,6 +53,8 @@ public final class Loggy {
 	private final boolean println;
 	private final boolean reqColor;
 	private final boolean writeFile;
+
+	private Level debugLevel = Level.ALL;
 	
 	private Loggy(String path, boolean println, boolean reqColor, boolean writeFile) {
 
@@ -139,7 +139,7 @@ public final class Loggy {
 		
 		String msg = message == null ? "null" : message.toString();
 
-		if(level == Level.ALL) {
+		if(level == Level.ALL && debugLevel == Level.ALL) {
 
 			String noColor = String.format("[%s] [ALL] %s\n", Reference.time.get(), msg);
 
@@ -154,7 +154,7 @@ public final class Loggy {
 			if(writeFile) writeFile(noColor);
 
 			return noColor;
-		}else if(level == Level.TRACE) {
+		}else if(level == Level.TRACE && (debugLevel == Level.TRACE || debugLevel == Level.ALL)) {
 
 			String noColor = String.format("[%s] [TRACE] %s\n", Reference.time.get(), msg);
 
@@ -169,7 +169,7 @@ public final class Loggy {
 			if(writeFile) writeFile(noColor);
 
 			return noColor;
-		}else if(level == Level.DEBUG) {
+		}else if(level == Level.DEBUG && (debugLevel == Level.DEBUG || debugLevel == Level.ALL)) {
 
 			String noColor = String.format("[%s] [DEBUG] %s\n", Reference.time.get(), msg);
 
@@ -184,7 +184,7 @@ public final class Loggy {
 			if(writeFile) writeFile(noColor);
 
 			return noColor;
-		}else if(level == Level.INFO) {
+		}else if(level == Level.INFO && (debugLevel == Level.INFO || debugLevel == Level.ALL)) {
 
 			String noColor = String.format("[%s] [INFO] %s\n", Reference.time.get(), msg);
 
@@ -199,7 +199,7 @@ public final class Loggy {
 			if(writeFile) writeFile(noColor);
 
 			return noColor;
-		}else if(level == Level.WARN) {
+		}else if(level == Level.WARN && (debugLevel == Level.WARN || debugLevel == Level.ALL)) {
 
 			String noColor = String.format("[%s] [WARN] %s\n", Reference.time.get(), msg);
 
@@ -214,7 +214,7 @@ public final class Loggy {
 			if(writeFile) writeFile(noColor);
 
 			return noColor;
-		}else if(level == Level.ERROR) {
+		}else if(level == Level.ERROR && (debugLevel == Level.ERROR || debugLevel == Level.ALL)) {
 
 			String noColor = String.format("[%s] [ERROR] %s\n", Reference.time.get(), msg);
 
@@ -229,7 +229,7 @@ public final class Loggy {
 			if(writeFile) writeFile(noColor);
 
 			return noColor;
-		}else if(level == Level.FATAL) {
+		}else if(level == Level.FATAL && (debugLevel == Level.FATAL || debugLevel == Level.ALL)) {
 
 			String noColor = String.format("[%s] [FATAL] %s\n", Reference.time.get(), msg);
 
@@ -244,8 +244,8 @@ public final class Loggy {
 			if(writeFile) writeFile(noColor);
 
 			return noColor;
-		}else if(level == Level.OFF) {
-			return level.getName();
+		}else if(level == Level.OFF && debugLevel == Level.OFF) {
+			return "Loggy is off";
 		}
 		return null;
 	}
@@ -256,7 +256,7 @@ public final class Loggy {
 		String object2 = source == null ? "null" : source.toString();
 		String msg = message == null ? "null" : message.toString();
 
-		if(level == Level.ALL) {
+		if(level == Level.ALL && debugLevel == Level.ALL) {
 			String noColor = String.format("[%s] [%s/ALL] (%s) %s\n", Reference.time.get(), object1, object2, msg);
 
 			if(println) {
@@ -278,7 +278,7 @@ public final class Loggy {
 			if(writeFile) writeFile(noColor);
 
 			return noColor;
-		}else if(level == Level.TRACE) {
+		}else if(level == Level.TRACE && (debugLevel == Level.TRACE || debugLevel == Level.ALL)) {
 			String noColor = String.format("[%s] [%s/TRACE] (%s) %s\n", Reference.time.get(), object1, object2, msg);
 
 			if(println) {
@@ -300,7 +300,7 @@ public final class Loggy {
 			if(writeFile) writeFile(noColor);
 
 			return noColor;
-		}else if(level == Level.DEBUG) {
+		}else if(level == Level.DEBUG && (debugLevel == Level.DEBUG || debugLevel == Level.ALL)) {
 			String noColor = String.format("[%s] [%s/DEBUG] (%s) %s\n", Reference.time.get(), object1, object2, msg);
 
 			if(println) {
@@ -321,7 +321,7 @@ public final class Loggy {
 			if(writeFile) writeFile(noColor);
 
 			return noColor;
-		}else if(level == Level.INFO) {
+		}else if(level == Level.INFO && (debugLevel == Level.INFO || debugLevel == Level.ALL)) {
 			String noColor = String.format("[%s] [%s/INFO] (%s) %s\n", Reference.time.get(), object1, object2, msg);
 
 			if(println) {
@@ -342,7 +342,7 @@ public final class Loggy {
 			if(writeFile) writeFile(noColor);
 
 			return noColor;
-		}else if(level == Level.WARN) {
+		}else if(level == Level.WARN && (debugLevel == Level.WARN || debugLevel == Level.ALL)) {
 			String noColor = String.format("[%s] [%s/WARN] (%s) %s\n", Reference.time.get(), object1, object2, msg);
 
 			if(println) {
@@ -363,7 +363,7 @@ public final class Loggy {
 			if(writeFile) writeFile(noColor);
 
 			return noColor;
-		}else if(level == Level.ERROR) {
+		}else if(level == Level.ERROR && (debugLevel == Level.ERROR || debugLevel == Level.ALL)) {
 			String noColor = String.format("[%s] [%s/ERROR] (%s) %s\n", Reference.time.get(), object1, object2, msg);
 
 			if(println) {
@@ -384,7 +384,7 @@ public final class Loggy {
 			if(writeFile) writeFile(noColor);
 
 			return noColor;
-		}else if(level == Level.FATAL) {
+		}else if(level == Level.FATAL && (debugLevel == Level.FATAL || debugLevel == Level.ALL)) {
 			String noColor = String.format("[%s] [%s/FATAL] (%s) %s\n", Reference.time.get(), object1, object2, msg);
 
 			if(println) {
@@ -405,8 +405,8 @@ public final class Loggy {
 			if(writeFile) writeFile(noColor);
 
 			return noColor;
-		}else if(level == Level.OFF) {
-			return level.getName();
+		}else if(level == Level.OFF && debugLevel == Level.OFF) {
+			return "Loggy is off";
 		}
 		return null;
 	}
@@ -429,5 +429,13 @@ public final class Loggy {
 
 	public String getPath() {
 		return path;
+	}
+
+	public Level getDebugLevel() {
+		return debugLevel;
+	}
+
+	public void setDebugLevel(Level level) {
+		this.debugLevel = level;
 	}
 }
