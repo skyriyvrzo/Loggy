@@ -7,7 +7,7 @@ class Test {
         Loggy l = Loggy.getLoggy(null, true, true);
 
         System.out.println("Starting " + Test.class.getCanonicalName());
-        l.setDebugLevel(Level.DEBUG);
+        l.setDebugLevel(Level.ALL);
         l.log(Level.ALL, l);
         l.log(Level.TRACE, l);
         l.log(Level.DEBUG, l);

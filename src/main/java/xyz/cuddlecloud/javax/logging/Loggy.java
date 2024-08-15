@@ -145,7 +145,7 @@ public final class Loggy {
 
 			if(println) {
 				if(reqColor) {
-					OutputInterceptor.out.print(String.format("%s[%s] %s[ALL]%s %s\n", ANSIEscapeColorCode.green, Reference.time.get(), ANSIEscapeColorCode.white, ANSIEscapeColorCode.white, msg));
+					OutputInterceptor.out.print(String.format("%s[%s] %s[ALL]%s %s\n", ANSIEscapeColorCode.light_blue, Reference.time.get(), ANSIEscapeColorCode.white, ANSIEscapeColorCode.white, msg));
 				}else {
 					OutputInterceptor.out.print(noColor);
 				}
@@ -160,7 +160,7 @@ public final class Loggy {
 
 			if(println) {
 				if(reqColor) {
-					OutputInterceptor.out.print(String.format("%s[%s] %s[TRACE]%s %s\n", ANSIEscapeColorCode.green, Reference.time.get(), ANSIEscapeColorCode.black, ANSIEscapeColorCode.white, msg));
+					OutputInterceptor.out.print(String.format("%s[%s] %s[TRACE]%s %s\n", ANSIEscapeColorCode.light_blue, Reference.time.get(), ANSIEscapeColorCode.black, ANSIEscapeColorCode.white, msg));
 				}else {
 					OutputInterceptor.out.print(noColor);
 				}
@@ -175,7 +175,7 @@ public final class Loggy {
 
 			if(println) {
 				if(reqColor) {
-					OutputInterceptor.out.print(String.format("%s[%s] %s[DEBUG]%s %s\n", ANSIEscapeColorCode.green, Reference.time.get(), ANSIEscapeColorCode.light_magenta, ANSIEscapeColorCode.white, msg));
+					OutputInterceptor.out.print(String.format("%s[%s] %s[DEBUG]%s %s\n", ANSIEscapeColorCode.light_blue, Reference.time.get(), ANSIEscapeColorCode.light_magenta, ANSIEscapeColorCode.white, msg));
 				}else {
 					OutputInterceptor.out.print(noColor);
 				}
@@ -190,7 +190,7 @@ public final class Loggy {
 
 			if(println) {
 				if(reqColor) {
-					OutputInterceptor.out.print(String.format("%s[%s] %s[INFO]%s %s\n", ANSIEscapeColorCode.green, Reference.time.get(), ANSIEscapeColorCode.green, ANSIEscapeColorCode.white, msg));
+					OutputInterceptor.out.print(String.format("%s[%s] %s[INFO]%s %s\n", ANSIEscapeColorCode.light_blue, Reference.time.get(), ANSIEscapeColorCode.green, ANSIEscapeColorCode.white, msg));
 				}else {
 					OutputInterceptor.out.print(noColor);
 				}
@@ -205,7 +205,7 @@ public final class Loggy {
 
 			if(println) {
 				if(reqColor) {
-					OutputInterceptor.out.print(String.format("%s[%s] %s[WARN]%s %s\n", ANSIEscapeColorCode.green, Reference.time.get(), ANSIEscapeColorCode.yellow, ANSIEscapeColorCode.white, msg));
+					OutputInterceptor.out.print(String.format("%s[%s] %s[WARN]%s %s\n", ANSIEscapeColorCode.light_blue, Reference.time.get(), ANSIEscapeColorCode.yellow, ANSIEscapeColorCode.white, msg));
 				}else {
 					OutputInterceptor.out.print(noColor);
 				}
@@ -220,7 +220,7 @@ public final class Loggy {
 
 			if(println) {
 				if(reqColor) {
-					OutputInterceptor.out.print(String.format("%s[%s] %s[ERROR]%s %s\n", ANSIEscapeColorCode.green, Reference.time.get(), ANSIEscapeColorCode.light_red, ANSIEscapeColorCode.white, msg));
+					OutputInterceptor.out.print(String.format("%s[%s] %s[ERROR]%s %s\n", ANSIEscapeColorCode.light_blue, Reference.time.get(), ANSIEscapeColorCode.light_red, ANSIEscapeColorCode.white, msg));
 				}else {
 					OutputInterceptor.out.print(noColor);
 				}
@@ -235,7 +235,7 @@ public final class Loggy {
 
 			if(println) {
 				if(reqColor) {
-					OutputInterceptor.out.print(String.format("%s[%s] %s[FATAL]%s %s\n", ANSIEscapeColorCode.green, Reference.time.get(), ANSIEscapeColorCode.red, ANSIEscapeColorCode.white, msg));
+					OutputInterceptor.out.print(String.format("%s[%s] %s[FATAL]%s %s\n", ANSIEscapeColorCode.light_blue, Reference.time.get(), ANSIEscapeColorCode.red, ANSIEscapeColorCode.white, msg));
 				}else {
 					OutputInterceptor.out.print(noColor);
 				}
@@ -262,7 +262,7 @@ public final class Loggy {
 			if(println) {
 				if(reqColor) {
 					OutputInterceptor.out.print(String.format("%s[%s] %s[%s/ALL] %s(%s) %s%s\n",
-							ANSIEscapeColorCode.green,
+							ANSIEscapeColorCode.light_blue,
 							Reference.time.get(),
 							ANSIEscapeColorCode.white,
 							object1,
@@ -284,7 +284,7 @@ public final class Loggy {
 			if(println) {
 				if(reqColor) {
 					OutputInterceptor.out.print(String.format("%s[%s] %s[%s/TRACE] %s(%s) %s%s\n",
-							ANSIEscapeColorCode.green,
+							ANSIEscapeColorCode.light_blue,
 							Reference.time.get(),
 							ANSIEscapeColorCode.black,
 							object1,
@@ -306,7 +306,7 @@ public final class Loggy {
 			if(println) {
 				if(reqColor) {
 					OutputInterceptor.out.print(String.format("%s[%s] %s[%s/DEBUG] %s(%s) %s%s\n",
-							ANSIEscapeColorCode.green,
+							ANSIEscapeColorCode.light_blue,
 							Reference.time.get(),
 							ANSIEscapeColorCode.light_magenta,
 							object1,
@@ -327,7 +327,7 @@ public final class Loggy {
 			if(println) {
 				if(reqColor) {
 					OutputInterceptor.out.print(String.format("%s[%s] %s[%s/INFO] %s(%s) %s%s\n",
-							ANSIEscapeColorCode.green,
+							ANSIEscapeColorCode.light_blue,
 							Reference.time.get(),
 							ANSIEscapeColorCode.green,
 							object1,
@@ -348,7 +348,7 @@ public final class Loggy {
 			if(println) {
 				if(reqColor) {
 					OutputInterceptor.out.print(String.format("%s[%s] %s[%s/WARN] %s(%s) %s%s\n",
-							ANSIEscapeColorCode.green,
+							ANSIEscapeColorCode.light_blue,
 							Reference.time.get(),
 							ANSIEscapeColorCode.yellow,
 							object1,
@@ -369,7 +369,7 @@ public final class Loggy {
 			if(println) {
 				if(reqColor) {
 					OutputInterceptor.out.print(String.format("%s[%s] %s[%s/ERROR] %s(%s) %s%s\n",
-							ANSIEscapeColorCode.green,
+							ANSIEscapeColorCode.light_blue,
 							Reference.time.get(),
 							ANSIEscapeColorCode.light_red,
 							object1,
@@ -390,7 +390,7 @@ public final class Loggy {
 			if(println) {
 				if(reqColor) {
 					OutputInterceptor.out.print(String.format("%s[%s] %s[%s/FATAL] %s(%s) %s%s\n",
-							ANSIEscapeColorCode.green,
+							ANSIEscapeColorCode.light_blue,
 							Reference.time.get(),
 							ANSIEscapeColorCode.red,
 							object1,
