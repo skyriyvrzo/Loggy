@@ -15,95 +15,95 @@ public final class OutputInterceptor {
             interceptorOut = new PrintStream(originalOut) {
             @Override
             public void print(boolean b) {
-                super.print(Loggy.getLoggy("").b(b));
+                super.print(Loggy4J.getLoggy("").b(b));
             }
 
             @Override
             public void print(char c) {
-                super.print(Loggy.getLoggy("").b(c));
+                super.print(Loggy4J.getLoggy("").b(c));
             }
 
             @Override
             public void print(int i) {
-                super.print(Loggy.getLoggy("").b(i));
+                super.print(Loggy4J.getLoggy("").b(i));
             }
 
             @Override
             public void print(long l) {
-                super.print(Loggy.getLoggy("").b(l));
+                super.print(Loggy4J.getLoggy("").b(l));
             }
 
             @Override
             public void print(float f) {
-                super.print(Loggy.getLoggy("").b(f));
+                super.print(Loggy4J.getLoggy("").b(f));
             }
 
             @Override
             public void print(double d) {
-                super.print(Loggy.getLoggy("").b(d));
+                super.print(Loggy4J.getLoggy("").b(d));
             }
 
             @Override
             public void print(char[] s) {
-                super.print(Loggy.getLoggy("").b(s));
+                super.print(Loggy4J.getLoggy("").b(s));
             }
 
 
             @Override
             public void print(String s) {
-                super.print(Loggy.getLoggy("").b(s));
+                super.print(Loggy4J.getLoggy("").b(s));
             }
 
             @Override
             public void print(Object obj) {
-                super.print(Loggy.getLoggy("").b(obj));
+                super.print(Loggy4J.getLoggy("").b(obj));
             }
         };
         interceptorErr = new PrintStream(originalErr) {
             @Override
             public void print(boolean b) {
-                super.print(Loggy.getLoggy("").brr(b));
+                super.print(Loggy4J.getLoggy("").brr(b));
             }
 
             @Override
             public void print(char c) {
-                super.print(Loggy.getLoggy("").brr(c));
+                super.print(Loggy4J.getLoggy("").brr(c));
             }
 
             @Override
             public void print(int i) {
-                super.print(Loggy.getLoggy("").brr(i));
+                super.print(Loggy4J.getLoggy("").brr(i));
             }
 
             @Override
             public void print(long l) {
-                super.print(Loggy.getLoggy("").brr(l));
+                super.print(Loggy4J.getLoggy("").brr(l));
             }
 
             @Override
             public void print(float f) {
-                super.print(Loggy.getLoggy("").brr(f));
+                super.print(Loggy4J.getLoggy("").brr(f));
             }
 
             @Override
             public void print(double d) {
-                super.print(Loggy.getLoggy("").brr(d));
+                super.print(Loggy4J.getLoggy("").brr(d));
             }
 
             @Override
             public void print(char[] s) {
-                super.print(Loggy.getLoggy("").brr(s));
+                super.print(Loggy4J.getLoggy("").brr(s));
             }
 
 
             @Override
             public void print(String s) {
-                super.print(Loggy.getLoggy("").brr(s));
+                super.print(Loggy4J.getLoggy("").brr(s));
             }
 
             @Override
             public void print(Object obj) {
-                super.print(Loggy.getLoggy("").brr(obj));
+                super.print(Loggy4J.getLoggy("").brr(obj));
             }
         };
 

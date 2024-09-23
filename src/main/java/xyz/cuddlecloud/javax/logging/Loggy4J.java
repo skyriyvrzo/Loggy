@@ -7,7 +7,7 @@ import java.time.format.DateTimeFormatter;
 import xyz.cuddlecloud.javax.colorlib.ANSIEscapeColorCode;
 import xyz.cuddlecloud.javax.logging.util.Reference;
 
-public final class Loggy {
+public final class Loggy4J {
 
 	public enum Level {
 		ALL(Integer.MIN_VALUE),
@@ -48,7 +48,7 @@ public final class Loggy {
 		}
 	}
 
-	private static Loggy loggy;
+	private static Loggy4J loggy;
 	private String path = "logs";
 	private final boolean println;
 	private final boolean reqColor;
@@ -56,7 +56,7 @@ public final class Loggy {
 
 	private Level debugLevel = Level.ALL;
 	
-	private Loggy(String path, boolean println, boolean reqColor, boolean writeFile) {
+	private Loggy4J(String path, boolean println, boolean reqColor, boolean writeFile) {
 
 		OutputInterceptor.a();
 
@@ -71,41 +71,41 @@ public final class Loggy {
 		if(writeFile) mkdir();
 	}
 
-	public static synchronized Loggy getLoggy() {
+	public static synchronized Loggy4J getLoggy() {
 		if(loggy == null) {
-			loggy = new Loggy("", true, false, false);
+			loggy = new Loggy4J("", true, false, false);
 		}
 
 		return loggy;
 	}
 
-	public static synchronized Loggy getLoggy(String path) {
+	public static synchronized Loggy4J getLoggy(String path) {
 		if(loggy == null) {
-			loggy = new Loggy(path, false, false, false);
-		}
-
-		return loggy;
-	}
-	
-	public static synchronized Loggy getLoggy(String path, boolean println) {
-		if(loggy == null) {
-			loggy = new Loggy(path, println, false, false);
+			loggy = new Loggy4J(path, false, false, false);
 		}
 
 		return loggy;
 	}
 	
-	public static synchronized Loggy getLoggy(String path, boolean println, boolean reqColor) {
+	public static synchronized Loggy4J getLoggy(String path, boolean println) {
 		if(loggy == null) {
-			loggy = new Loggy(path, println, reqColor, false);
+			loggy = new Loggy4J(path, println, false, false);
 		}
 
 		return loggy;
 	}
 	
-	public static synchronized Loggy getLoggy(String path, boolean println, boolean reqColor, boolean writeFile) {
+	public static synchronized Loggy4J getLoggy(String path, boolean println, boolean reqColor) {
 		if(loggy == null) {
-			loggy = new Loggy(path, println, reqColor, writeFile);
+			loggy = new Loggy4J(path, println, reqColor, false);
+		}
+
+		return loggy;
+	}
+	
+	public static synchronized Loggy4J getLoggy(String path, boolean println, boolean reqColor, boolean writeFile) {
+		if(loggy == null) {
+			loggy = new Loggy4J(path, println, reqColor, writeFile);
 		}
 		return loggy;
 	}

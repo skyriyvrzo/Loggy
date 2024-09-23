@@ -1,10 +1,10 @@
 package xyz.cuddlecloud.javax.logging;
 
-import xyz.cuddlecloud.javax.logging.Loggy.Level;
+import xyz.cuddlecloud.javax.logging.Loggy4J.Level;
 
 class Test {
     public static void main(String...strings) throws InterruptedException {
-        Loggy l = Loggy.getLoggy(null, true, true);
+        Loggy4J l = Loggy4J.getLoggy(null, true, true);
 
         System.out.println("Starting " + Test.class.getCanonicalName());
         l.setDebugLevel(Level.ALL);
